@@ -1,5 +1,5 @@
 # OCI-BM-Solutions
-# OCI-BM-Fortigate-HAScript.py
+OCI-BM-Fortigate-HAScript.py
 
 [Synopsis]
 
@@ -10,14 +10,14 @@ routetable for inside subnets changed to next-hop (trust or inside) such that th
 This assures that traffic both directions inbound and outbound flows through the same Firewall.
 
 
-[Pre-requisites]
+Pre-requisites
 
 -The script should be run on worker node in OCI environment. Worker node will linux instance (eg. ubuntu) and python2.7 installed. Also, python libraries listed should be installed.
 -From the worker node, OCI environment needs to be reachable and also Fortigate Eth0 interfaces need to be reachable. 
 -Fortigates will have Floating Public IP (Reserved) between the instances. So while deploying Fortigates "Public IP" select as none in OCI.
 -Create a PublicIP in OCI  IPReservation. Active Fortigate Eth0 should be assigned the Floating Public IP.. 
 
-[Example]
+Example
 
 		      Floating Public IP             <<--- IPReservation in shared Network
 			           | 
@@ -42,13 +42,13 @@ Server Subnet RouteTable will point to Fortigate which is Active meaning which h
 ***The script will work for the setup as described above. The script should be consumed as reference automation which would work in environment mentioned in the documentation and should not be considered as a product. 
 ***
 
-[OCI Environment Parameter Requirements]
+OCI Environment Parameter Requirements
 
-# Create DEFAULT config at ~/.oci/config. More documentation located at 
-# https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/sdkconfig.htm
-#   SAMPLE FILE
+Create DEFAULT config at ~/.oci/config. More documentation located at 
+https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/sdkconfig.htm
+SAMPLE FILE
 '''
-[DEFAULT]
+DEFAULT
 user=user_ocid
 fingerprint=9f:de:ba:51:0d:99:c6:aa:fa:1e:8d:b3:ca:44:a8:32
 key_file =~/.oci/oci_api_key.pem
@@ -59,24 +59,29 @@ pass_phrase=mysecretphrase
 '''
 
 
-# Fill in the variable details
-# Fortigate outside private IP OCIDs
+Fill in the variable details for the script
+Fortigate outside private IP OCIDs
 Instance1_outside_private_ocid=""   
 Instance2_outside_private_ocid=""
-# Fortigate inside private IP OCIDs
+
+Fortigate inside private IP OCIDs
 Instance1_inside_private_ocid=""
 Instance2_inside_private_ocid="" 
-# Floating Public IP OCID (Reserved)  
+
+Floating Public IP OCID (Reserved)  
 Reserved_Public_IP_ocid=""
-# Fortigate Instance Display names in OCI
+
+Fortigate Instance Display names in OCI
 Instance1="FGT-A"
 Instance2="FGT-B"
-# Fortigate Outside private IPs
+
+Fortigate Outside private IPs
 Instance1_outside_private_ip=""
 Instance2_outside_private_ip=""
-# RouteTable for subnet with next-hop as Fortigate
-# This script covers for only one subnet. If there are more subnets, please add RouteTable OCID 
-# for each subnet and modify script to update the route table.
+
+RouteTable for subnet with next-hop as Fortigate
+This script covers for only one subnet. If there are more subnets, please add RouteTable OCID 
+for each subnet and modify script to update the route table.
 RouteTable_ocid=""
 
 
