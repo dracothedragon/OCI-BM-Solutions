@@ -120,8 +120,7 @@ def oci_ping_check(Active_Fortigate,Active_Fortigate_IP):
 def main():
 
     ''' Initiating the OCI Enviroment using the parameters.
-    Call oci_authenticate() to authenticate with Oracle Cloud and set the
-    Cookie for making REST API calls.
+    Call oci_authenticate() to authenticate with Oracle Cloud  for making REST API calls.
     '''
     compute,network=oci_authenticate()
 
@@ -169,7 +168,7 @@ def main():
                     '''
                     ''' Update the public IP by changing the private IP to Instance1 private IP OCID
                     '''
-                    oci_update_public_ip(network,RouteTable_ocid,Instance1_outside_private_ocid)
+                    oci_update_public_ip(network,Instance1_outside_private_ocid)
                     
                     ''' Update the default route in the Route table by changing the next-hop as 
                         inside private of Instance1. For every subnet make a oci_update_default_route call
