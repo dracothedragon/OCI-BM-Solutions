@@ -63,6 +63,8 @@ def oci_authenticate():
 
     return compute,network
 
+# Update the default route in the Route table by changing the next-hop
+
 def oci_update_default_route(network,route_table_id, private):
 	
 	route_table_details = oci.core.models.UpdateRouteTableDetails()
@@ -85,6 +87,8 @@ def oci_update_default_route(network,route_table_id, private):
 	except Exception as e: 
 		print "Failed to update the route rule. Exception: {}".format(e)
 		sys.exit(1)
+		
+# Update the public IP by changing the private IP
 
 def oci_update_public_ip(network,Instance_outside_private_ocid):
     
@@ -165,7 +169,7 @@ def main():
                     '''
                     ''' Update the public IP by changing the private IP to Instance1 private IP OCID
                     '''
-                    oci_update_public_ip(network,Instance1_outside_private_ocid)
+                    oci_update_public_ip(network,RouteTable_ocid,Instance1_outside_private_ocid)
                     
                     ''' Update the default route in the Route table by changing the next-hop as 
                         inside private of Instance1. For every subnet make a oci_update_default_route call
